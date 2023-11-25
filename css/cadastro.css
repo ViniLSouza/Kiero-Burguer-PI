@@ -1,0 +1,98 @@
+
+
+.cadB{
+    display: flex;
+    flex-direction: column;
+    padding: 3em 6em;
+    text-align: center;
+}
+
+.cad{
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
+    color: #9b1c1c;
+    font-weight: 600;
+    text-align: center;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+    margin: 0 5em 5em 5em;
+    padding-inline: 5em;
+    padding-block: 3em;
+    font-size: 20px;
+    color: white;
+}
+
+.barra{
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    text-align: center;
+    font-family: 'Josefin Sans';
+    font-size: 20px;
+    border: 0;
+    background-color: white;
+}
+
+.all{
+    grid-column: span 4;
+}
+
+.duo{
+    grid-column: span 2;
+}
+
+.botao{
+    border: 0;
+    text-decoration: none;
+    background-color: #742424;
+    padding: 0.8em;
+    border-radius: 10px;
+    font-family: 'Josefin Sans';
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+    grid-column: 2 / 4;
+    margin-top: 1em;
+}
+
+.botao:hover{
+    background-color:red;
+}
+
+.botao:active{
+    background-color: #9b1c1c;
+}
+
+footer{
+    position: sticky;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #9b1c1c;
+    justify-content: center;
+    text-align: center;
+    padding: 2em;
+}
+
+.textoF{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: white;
+}
+
+.dev{
+    padding: 1em;
+}
+
+.devs{
+    display: flex;
+    margin-inline: 1em;
+    justify-content: center;
+    text-align: center;
+}
