@@ -46,7 +46,7 @@ document.getElementById('formSenha').addEventListener('submit', function(e) {
 <body>
     <section class="container">
         <div class="box">
-            <a href="index.html" class="ancora">‹ Voltar à página inicial</a>
+            <a href="index.php" class="ancora">‹ Voltar à página inicial</a>
             <h1 class="name">LOGIN</h1>
             <form action="login.html" method="post" class="login">
                 <input type="text" name="username" placeholder="Usuário" required class="barra">

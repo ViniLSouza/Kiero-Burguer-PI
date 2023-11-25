@@ -21,12 +21,12 @@ body{
             <img src="imagens/logo.png" class="logoN">
         </div>
         <ul class="nav">
-                <li class="itemN"><a href="index.html" class="name">Home</a></li>
-                <li class="itemN"><a href="pedidos.html" class="name">Pedidos</a></li>
-                <li class="itemN"><a href="peça.html" class="name">Peça aqui</a></li>
+                <li class="itemN"><a href="index.php" class="name">Home</a></li>
+                <li class="itemN"><a href="pedidos.php" class="name">Pedidos</a></li>
+                <li class="itemN"><a href="peça.php" class="name">Peça aqui</a></li>
         </ul>
         <div class="loginH">
-            <a href="login.html" class="login">LOGIN</a>
+            <a href="login.php" class="login">LOGIN</a>
         </div>
     </header>
     <footer>
