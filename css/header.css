@@ -52,10 +52,6 @@ header{
     transform-origin: bottom left;
     transform: scaleX(1);
 }
-.carrinho{
-    margin-left: 1em;
-    width: 30px;
-}
 .loginH{
     display: flex;
     justify-content: end;
