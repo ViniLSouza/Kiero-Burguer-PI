@@ -46,16 +46,16 @@ document.getElementById('formSenha').addEventListener('submit', function(e) {
 <body>
     <section class="container">
         <div class="box">
-            <a href="index.php" class="ancora">‹ Voltar à página inicial</a>
+            <a href="index.html" class="ancora">‹ Voltar à página inicial</a>
             <h1 class="name">LOGIN</h1>
-            <form action="login.php" method="post" class="login">
+            <form action="login.html" method="post" class="login">
                 <input type="text" name="username" placeholder="Usuário" required class="barra">
                 <input type="password" id="passwordField" name="password" placeholder="Senha" required class="barra senha">
                 <button type="button" onclick="togglePasswordVisibility()" class="show">Mostrar Senha</button>
                 <input type="submit" value="Entrar" class="botao">
             </form>
             <p>Esqueceu sua senha?<button class="ancora" onclick="abrirModal()">Trocar Senha</button></p>
-            <p>Não tem uma conta?<a href="cadastro.php" class="ancora"> Cadastre-se</a></p>
+            <p>Não tem uma conta?<a href="cadastro.html" class="ancora"> Cadastre-se</a></p>
             <p class="noMarg">Kiero Burguer®</p>
         </div>
     </section>
