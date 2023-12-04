@@ -1,3 +1,21 @@
+<?php
+session_start();
+if (isset($_SESSION['login'])) {
+    include "conn.php";
+    $cons_nome = $conn->prepare('SELECT * FROM tbl_login WHERE ID_Login=:pid');
+    $cons_nome->bindValue(':pid', $_SESSION['login']);
+    $cons_nome->execute();
+    $row_nome = $cons_nome->fetch();
+
+
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        header('Location: login.php');
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,21 +44,41 @@
         background-position: center;
         box-shadow: 0 0 6px rgba(0, 0, 0, 1);
     }
+
+    @media screen and (max-width: 1050px) {
+        .mostruario {
+            display: block;
+        }
+
+        .foto {
+            width: 50%;
+        }
+
+        .texto {
+            font-size: 25px;
+        }
+    }
 </style>
 
 <body>
     <header>
         <div class="logoH">
-            <img src="imagens/logo.png" class="logoN">
+        <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
         </div>
         <ul class="nav">
-            <li class="itemN"><a href="index.html" class="name">Home</a></li>
-            <li class="itemN item"><a href="pedidos.html" class="name">Pedidos</a></li>
+            <li class="itemN"><a href="index.php" class="name">Home</a></li>
+            <li class="itemN"><a href="pedidos.php" class="name">Pedidos</a></li>
             <li class="itemN"><a href="carrinho.php" class="name">Peça aqui</a></li>
         </ul>
-        <div class="loginH">
-            <a href="login.php" class="login">LOGIN</a>
-        </div>
+        <?php if (!isset($_SESSION['login'])) : ?>
+            <div class="loginH">
+                <a href="login.php" class="login">LOGIN</a>
+            </div>
+        <?php else : ?>
+            <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
+                <a class='logout' href='index.php?logout'>LOGOUT</a>
+            </p>
+        <?php endif; ?>
     </header>
     <section class="banner">
         <img src="imagens/banner.jpg" class="fotoB">

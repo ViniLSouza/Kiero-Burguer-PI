@@ -1,13 +1,48 @@
+<?php
+session_start();
+if (isset($_SESSION['login'])) {
+    include "conn.php";
+    $cons_nome = $conn->prepare('SELECT * FROM tbl_login WHERE ID_Login=:pid');
+    $cons_nome->bindValue(':pid', $_SESSION['login']);
+    $cons_nome->execute();
+    $row_nome = $cons_nome->fetch();
+
+
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        header('Location: login.php');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <title>Peça Aqui</title>
+    <link rel="stylesheet" type="text/css" href="css/header.css" media="screen" />
 </head>
 
 <body>
-
+<header>
+        <div class="logoH">
+        <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
+        </div>
+        <ul class="nav">
+            <li class="itemN"><a href="index.php" class="name">Home</a></li>
+            <li class="itemN"><a href="pedidos.php" class="name">Pedidos</a></li>
+            <li class="itemN"><a href="carrinho.php" class="name">Peça aqui</a></li>
+        </ul>
+        <?php if (!isset($_SESSION['login'])) : ?>
+            <div class="loginH">
+                <a href="login.php" class="login">LOGIN</a>
+            </div>
+        <?php else : ?>
+            <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
+                <a class='logout' href='index.php?logout'>LOGOUT</a>
+            </p>
+        <?php endif; ?>
+    </header>
     <div class="itens">
         <?php
         $conn = new PDO('mysql:host=localhost;dbname=banco', 'root', '');
@@ -71,10 +106,10 @@
             const currentElementId = document.getElementById(`item-${id}`)
 
             if (!currentElementId) {
-                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + "quantidade: " + carrinhoItens[id].quantidade + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
+                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + " - quantidade: " + carrinhoItens[id].quantidade + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
                 document.getElementById('itens-carrinho').innerHTML += itemHTML;
             } else {
-                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} quantidade ${carrinhoItens[id].quantidade} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
+                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} - quantidade ${carrinhoItens[id].quantidade} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
             }
 
 
@@ -83,10 +118,11 @@
         }
 
         function removerDoCarrinho(id, preco) {
-            if (carrinhoItens[id] && carrinhoItens[id] > 0) {
+            console.log(Object.keys(carrinhoItens).length)
+            if (Object.keys(carrinhoItens).length) {
                 var itemElement = document.getElementById('item-' + id);
-
-                if (!carrinho[id].quantidade) {
+                console.log(itemElement)
+                if (carrinhoItens[id].quantidade===1) {
                     itemElement.parentNode.removeChild(itemElement);
                     delete carrinhoItens[id];
                 } else {
@@ -94,11 +130,12 @@
                         ...carrinhoItens[id],
                         quantidade: carrinhoItens[id].quantidade - 1
                     }
-                    itemElement.innerHTML = `${nome} - R$ ${preco.toFixed(2)} - quantidade: {carrinhoItens[id]} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
+                    itemElement.innerHTML = `${carrinhoItens[id].nome} - R$ ${preco.toFixed(2)} - quantidade: ${carrinhoItens[id].quantidade} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
                 }
                 precoTotal -= preco;
                 atualizarPrecoTotal();
             }
+            
         }
 
         function atualizarPrecoTotal() {
@@ -110,6 +147,21 @@
             if (!Object.keys(carrinhoItens).length) {
                 alert("Adicione itens ao carrinho antes de finalizar a compra.");
                 return;
+            }
+
+            const returnArrayQuantities = () => {
+                const finalArray = []
+                for(var key in carrinhoItens){
+                    const currentObject = carrinhoItens[key];
+                    for(let i = 0;i < currentObject.quantidade;i++){
+                        finalArray.push(key)
+                    }
+                }
+                return finalArray;
+            }
+            carrinhoItens = {
+                ...carrinhoItens,
+                items: returnArrayQuantities()      
             }
 
             var xhr = new XMLHttpRequest();

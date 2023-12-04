@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600&display=swap');
 body{
     margin: 0;
     padding: 0;
@@ -122,6 +122,14 @@ p{
 
 .email{
     border: black 3px solid;
+}
+
+.erro {
+    
+    font-size: 20px;
+    color: #9b1c1c;
+    text-align: center;
+    margin-top: -21rem;
 }
 
 @keyframes modalOpen{

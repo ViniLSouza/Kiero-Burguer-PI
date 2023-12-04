@@ -72,29 +72,3 @@ header{
 .login:active{
     background-color: #9b1c1c;
 }
-
-@media screen and (max-width: 750px) {
-    header{
-        display: block;
-    }
-    .logoH{
-        justify-content: center;
-    }
-    .itemN{
-        margin-inline: 0;
-    }
-    .item{
-        margin-inline: 1em;
-    }
-    header{
-        padding: 1em;
-    }
-    .loginH{
-        justify-content: center;
-    }
-    .login{
-        font-size: 15px;
-        width: 100%;
-        text-align: center;
-    }
-}

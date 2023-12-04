@@ -1,28 +1,21 @@
 <?php
-$conn = new PDO('mysql:host=localhost;dbname=banco', 'root', '');
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+session_start();
+if (isset($_SESSION['login'])) {
+    include "conn.php";
 
-$data = json_decode(file_get_contents("php://input"), true);
+    $cliente_id = $_SESSION['login'];
+    $carrinhoItens = json_decode(file_get_contents('php://input'), true);
 
-try {
-    $stmt = $conn->prepare("INSERT INTO pedidos (id_produto, quantidade) VALUES (:idProduto, :quantidade)");
+    $ids_itens = array_keys($carrinhoItens);
 
-    foreach ($data as $idProduto => $quantidade) {
-        $idProduto = intval($idProduto);
-        $quantidade = intval($quantidade);
-
-        $stmt->bindParam(':idProduto', $idProduto, PDO::PARAM_INT);
-        $stmt->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
-        $stmt->execute();
+    $inserir_pedido = $conn->prepare('INSERT INTO pedidos (FKcliente, items) VALUES (:cliente_id, :items)');
+    $inserir_pedido->bindParam(':cliente_id', $cliente_id);
+    $inserir_pedido->bindParam(':items', json_encode(intval($carrinhoItens["items"])));
+    
+    if ($inserir_pedido->execute()) {
+        echo json_encode(array("status" => "success", "message" => "Pedido registrado com sucesso!"));
+    } else {
+        echo json_encode(array("status" => "error", "message" => "Erro ao registrar o pedido."));
     }
-
-    http_response_code(200);
-    echo json_encode(array("message" => "Pedido processado com sucesso!"));
-
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(array("message" => "Erro ao processar o pedido: " . $e->getMessage()));
 }
-
-$conn = null;
 ?>

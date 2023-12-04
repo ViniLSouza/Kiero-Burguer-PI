@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600&display=swap');
 .fotoB{
     width: 100%;
 }
@@ -87,37 +87,4 @@ footer{
     margin-inline: 1em;
     justify-content: center;
     text-align: center;
-}
-
-@media screen and (max-width: 1050px) {
-    .mostruario{
-        display: block;
-    }
-    .foto{
-        width: 50%;
-    }
-    .texto{
-        font-size: 25px;
-    }
-    .fraseB{
-        font-size: 25px;
-    }
-    .devs{
-        display: block;
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .foto{
-        width: 80%;
-    }
-    .sobre{
-        padding-inline: 1em;
-        margin-bottom: 3em;
-        margin: 0;
-    }
-    .frase{
-        padding: 1em;
-    }
 }

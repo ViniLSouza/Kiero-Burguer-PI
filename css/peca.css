@@ -1,0 +1,133 @@
+.cardB{
+    display: flex;
+    flex-direction: column;
+    padding: 3em 6em;
+    text-align: center;
+}
+
+.card{
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
+    color: #9b1c1c;
+    font-weight: 600;
+    text-align: center;
+}
+
+.space{
+    margin-inline: 1em;
+}
+
+.container{
+    text-align: center;
+    margin: 0 5em 5em 5em;
+    padding-inline: 5em;
+    padding-block: 3em;
+    font-size: 20px;
+    color: white;
+}
+
+.box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+h1{
+    grid-column: span 4;
+    color: #9b1c1c;
+}
+
+.burger{
+    display: grid;
+    grid-row: 100px 100px 100px 100px;
+    margin: 0.5em;
+    border: #742424 1px solid;
+    padding: 1em;
+    place-items: center;
+}
+
+.lanche{
+    width: 150px;
+}
+
+.nome{
+    font-size: 30px;
+}
+
+.descricao{
+    font-size: 15px;
+}
+
+.number-input{
+    display: flex;
+
+}
+  
+input[type='number']{
+    border: none;
+    width: 25px;
+    font-size: 18px;
+    font-family: 'Josefin Sans';
+    padding: 5px;
+    text-align: center;
+}
+
+.minus-btn{
+    border-radius: 10px 0 0 10px;
+}
+
+.plus-btn{
+    border-radius: 0 10px 10px 0;
+}
+  
+.minus-btn, .plus-btn{
+    background-color: #742424;
+    border: none;
+    color: white;
+    font-size: 17px;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+.minus-btn:hover, .plus-btn:hover{
+    background-color: red;
+}
+
+input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+  
+input[type='number']{
+    -moz-appearance: textfield;
+}
+
+footer{
+    position: sticky;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #9b1c1c;
+    justify-content: center;
+    text-align: center;
+    padding: 2em;
+}
+
+.textoF{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: white;
+}
+
+.dev{
+    padding: 1em;
+}
+
+.devs{
+    display: flex;
+    margin-inline: 1em;
+    justify-content: center;
+    text-align: center;
+}
