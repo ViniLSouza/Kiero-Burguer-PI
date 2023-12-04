@@ -71,10 +71,10 @@
             const currentElementId = document.getElementById(`item-${id}`)
 
             if (!currentElementId) {
-                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + "quantidade" + carrinhoItens[id].quantidade + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
+                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + "quantidade: " + carrinhoItens[id].quantidade + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
                 document.getElementById('itens-carrinho').innerHTML += itemHTML;
             } else {
-                document.getElementById(`item-${id}`).innerHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + "quantidade" + carrinhoItens[id].quantidade + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
+                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} quantidade ${carrinhoItens[id].quantidade} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
             }
 
 
@@ -84,18 +84,19 @@
 
         function removerDoCarrinho(id, preco) {
             if (carrinhoItens[id] && carrinhoItens[id] > 0) {
-                if(){
-                    
-                }
-                delete carrinhoItens[id]
-                precoTotal -= preco;
                 var itemElement = document.getElementById('item-' + id);
-                if (carrinhoItens[id] === 0) {
+
+                if (!carrinho[id].quantidade) {
                     itemElement.parentNode.removeChild(itemElement);
                     delete carrinhoItens[id];
                 } else {
-                    itemElement.innerHTML = nome + ' - R$ ' + preco.toFixed(2) + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button>';
+                    carrinhoItens[id] = {
+                        ...carrinhoItens[id],
+                        quantidade: carrinhoItens[id].quantidade - 1
+                    }
+                    itemElement.innerHTML = `${nome} - R$ ${preco.toFixed(2)} - quantidade: {carrinhoItens[id]} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
                 }
+                precoTotal -= preco;
                 atualizarPrecoTotal();
             }
         }
