@@ -12,13 +12,22 @@ if (isset($_SESSION['login'])) {
 
     $ids_itens = array_keys($carrinhoItens);
 
-    $inserir_pedido = $conn->prepare('INSERT INTO pedidos (FKcliente, items) VALUES (:cliente_id, :items)');
+    $query_order = $conn->prepare('INSERT INTO pedidos (FKcliente, items) VALUES (:cliente_id, :items)');
     $inserir_pedido->bindParam(':cliente_id', $cliente_id);
-    $inserir_pedido->bindParam(':items', json_encode(array_map($funcaoConversao, $carrinhoItens["items"])));
-    $array_items = $carrinhoItens["items"];
-    $inserir_pedidoFK_consumivelFK = $conn->prepare('INSERT INTO pedidos_consumiveis (FK_pedido, FK_consumivel) VALUES (:ppedido, :pconsumivel)');
+    $array_items = array_map($funcaoConversao, $carrinhoItens["items"]);
+    $query_order->bindParam(':items', json_encode($array_items));
+
+
     
-    if ($inserir_pedido->execute()) {
+    if ($query_order->execute()) {
+        $id = $query_order->insert_id();
+        foreach ($array_items as $item) {
+            $pedido = $id;
+            $produto = $item;
+            $stmt = $conn->prepare('INSERT INTO pedido_consumiveis (pedido, produto) VALUES (?, ?)');
+            $stmt->bind_param('ii', $pedido, $produto);
+            $stmt->execute();
+        }
         echo json_encode(array("status" => "success", "message" => "Pedido registrado com sucesso!"));
     } else {
         echo json_encode(array("status" => "error", "message" => "Erro ao registrar o pedido."));
