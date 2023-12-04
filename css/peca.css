@@ -58,51 +58,6 @@ h1{
     font-size: 15px;
 }
 
-.number-input{
-    display: flex;
-
-}
-  
-input[type='number']{
-    border: none;
-    width: 25px;
-    font-size: 18px;
-    font-family: 'Josefin Sans';
-    padding: 5px;
-    text-align: center;
-}
-
-.minus-btn{
-    border-radius: 10px 0 0 10px;
-}
-
-.plus-btn{
-    border-radius: 0 10px 10px 0;
-}
-  
-.minus-btn, .plus-btn{
-    background-color: #742424;
-    border: none;
-    color: white;
-    font-size: 17px;
-    padding: 5px 10px;
-    cursor: pointer;
-    outline: none;
-  }
-  
-.minus-btn:hover, .plus-btn:hover{
-    background-color: red;
-}
-
-input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
-}
-  
-input[type='number']{
-    -moz-appearance: textfield;
-}
-
 footer{
     position: sticky;
     top: 100%;

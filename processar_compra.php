@@ -33,4 +33,3 @@ if (isset($_SESSION['login'])) {
         echo "Dados do carrinho não foram recebidos ou estão em um formato inválido.";
     }
 }
-?>

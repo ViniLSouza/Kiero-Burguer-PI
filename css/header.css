@@ -99,3 +99,32 @@ header{
 .logout:active{
     background-color: #9b1c1c;
 }
+
+footer{
+    position: sticky;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #9b1c1c;
+    justify-content: center;
+    text-align: center;
+    padding: 2em;
+}
+
+.textoF{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: white;
+}
+
+.dev{
+    padding: 1em;
+}
+
+.devs{
+    display: flex;
+    margin-inline: 1em;
+    justify-content: center;
+    text-align: center;
+}

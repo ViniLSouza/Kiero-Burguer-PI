@@ -1,9 +1,9 @@
 <?php
 try {
-    $conn = new PDO('mysql:host=localhost;dbname=banco','root','');
+    $conn = new PDO('mysql:host=localhost;dbname=banco', 'root', '');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Conexão realizada com sucesso!";
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo "Falha na conexão: " . $e->getMessage();
 }
 
@@ -26,14 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo = $_POST['tipo'];
 
         $sql = "INSERT INTO consumiveis (foto, nome, descricao, preco, tipo) VALUES ('$nome_unico', '$nome', '$descricao', $preco, '$tipo')";
-        
+
         try {
             $conn->exec($sql);
             echo "Dados inseridos com sucesso!";
-            
+
             header("Location: cardapio.php");
             exit();
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo "Erro ao inserir dados: " . $e->getMessage();
         }
     } else {
@@ -42,4 +42,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn = null;
-?>

@@ -4,12 +4,13 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Cadastro</title>
-    <link rel="stylesheet" type="text/css" href="cssADM/cardapio.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="../css/header.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="cssADM/cardapio.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../css/header.css" media="screen" />
     <style>
         body {
             background-image: url('../imagens/parede-de-concreto.jpg');
@@ -17,32 +18,34 @@ session_start();
             background-position: center;
             background-repeat: repeat;
         }
+
         .consumivel-item {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-}
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
 
-.btn{
-    width: 100px;
-    height: 100px;
-}
+        .btn {
+            width: 100px;
+            height: 100px;
+        }
 
-.foto{
-    width: 20%;
-    height: 100%;
-    margin-inline: 1em;
-}
+        .foto {
+            width: 20%;
+            height: 100%;
+            margin-inline: 1em;
+        }
 
-.margin{
-    margin-inline: 1em;
-}
+        .margin {
+            margin-inline: 1em;
+        }
     </style>
 </head>
+
 <body>
     <form action="processar_cadastro.php" method="post" enctype="multipart/form-data">
         <a href="indexadm.html">Voltar a página inicial</a>
@@ -88,11 +91,11 @@ session_start();
                 $stmt->bindParam(':excluirId', $excluirId);
                 $stmt->execute();
 
-                    $caminho_imagem = 'fotos/' . $foto_a_excluir;
-    if (file_exists($caminho_imagem)) {
-        unlink($caminho_imagem);
-        echo 'Imagem excluída com sucesso.';
-    }
+                $caminho_imagem = 'fotos/' . $foto_a_excluir;
+                if (file_exists($caminho_imagem)) {
+                    unlink($caminho_imagem);
+                    echo 'Imagem excluída com sucesso.';
+                }
 
                 header("Location: cardapio.php");
                 exit();
@@ -148,28 +151,28 @@ session_start();
 
             echo '</div>';
         }
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
     ?>
     <?php
 
-if (isset($_POST['productId'])) {
-    $productId = $_POST['productId'];
+    if (isset($_POST['productId'])) {
+        $productId = $_POST['productId'];
 
-    if (!isset($_SESSION['carrinho'])) {
-        $_SESSION['carrinho'] = array();
+        if (!isset($_SESSION['carrinho'])) {
+            $_SESSION['carrinho'] = array();
+        }
+
+        $_SESSION['carrinho'][] = $productId;
+
+        // Redireciona para a página peça.php
+        header('Location: peça.php');
+        exit();
+    } else {
+        echo "Erro: ID do produto não foi recebido.";
     }
-
-    $_SESSION['carrinho'][] = $productId;
-
-    // Redireciona para a página peça.php
-    header('Location: peça.php');
-    exit();
-} else {
-    echo "Erro: ID do produto não foi recebido.";
-}
-?>
+    ?>
 
     <script>
         function showEditForm(itemId) {
@@ -195,4 +198,5 @@ if (isset($_POST['productId'])) {
         </div>
     </footer>
 </body>
+
 </html>

@@ -23,48 +23,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding-inline: 0;
         }
     }
+
     @media screen and (max-width: 620px) {
         form {
             margin: 0;
         }
+
         .cadB {
-           padding-inline: 0;
+            padding-inline: 0;
         }
     }
-    
-@media screen and (max-width: 750px) {
-    header{
-        display: block;
-    }
-    .logoH{
-        justify-content: center;
-    }
-    .itemN{
-        margin-inline: 0;
-    }
-    .item{
-        margin-inline: 1em;
-    }
-    header{
-        padding: 1em;
-    }
-    .loginH{
-        justify-content: center;
-    }
-    .login{
-        font-size: 15px;
-        width: 100%;
-        text-align: center;
-    }
-}
 
-@media screen and (max-width: 1050px) {
-    .devs{
-        display: block;
-        font-size: 15px;
+    @media screen and (max-width: 750px) {
+        header {
+            display: block;
+        }
+
+        .logoH {
+            justify-content: center;
+        }
+
+        .itemN {
+            margin-inline: 0;
+        }
+
+        .item {
+            margin-inline: 1em;
+        }
+
+        header {
+            padding: 1em;
+        }
+
+        .loginH {
+            justify-content: center;
+        }
+
+        .login {
+            font-size: 15px;
+            width: 100%;
+            text-align: center;
+        }
     }
-}
-    
+
+    @media screen and (max-width: 1050px) {
+        .devs {
+            display: block;
+            font-size: 15px;
+        }
+    }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -194,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <div class="logoH">
-        <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
+            <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
         </div>
         <ul class="nav">
             <li class="itemN"><a href="index.php" class="name">Home</a></li>

@@ -21,12 +21,26 @@ if (isset($_SESSION['login'])) {
     <meta charset="UTF-8">
     <title>Peça Aqui</title>
     <link rel="stylesheet" type="text/css" href="css/header.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/carrinho.css" media="screen" />
 </head>
+<style>
 
+.item{
+    background-image: url(imagens/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body {
+        background-image: url('imagens/parede-de-concreto.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+    }
+</style>
 <body>
-<header>
+    <header>
         <div class="logoH">
-        <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
+            <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
         </div>
         <ul class="nav">
             <li class="itemN"><a href="index.php" class="name">Home</a></li>
@@ -57,9 +71,8 @@ if (isset($_SESSION['login'])) {
         $result = $conn->query($query);
 
         if ($result->rowCount() > 0) {
-            $tipos_consumiveis = array(); // Array para armazenar os consumíveis por tipo
-        
-            // Agrupa os consumíveis por tipo
+            $tipos_consumiveis = array();
+
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $tipo_consumivel = strtolower($row['tipo']);
                 if (!isset($tipos_consumiveis[$tipo_consumivel])) {
@@ -67,28 +80,26 @@ if (isset($_SESSION['login'])) {
                 }
                 $tipos_consumiveis[$tipo_consumivel][] = $row;
             }
-        
-            // Exibe os consumíveis separadamente por tipo
+
             foreach ($tipos_consumiveis as $tipo => $consumiveis) {
-                // Correção para exibir "Porções" corretamente
                 $tipo_nome = ($tipo === 'porcao') ? 'Porções' : ucfirst($tipo) . 's';
-        
-                echo '<h2>' . $tipo_nome . '</h2>'; // Exibe o título do tipo (Hamburguer, Porção, Bebida)
-        
+
+                echo '<h2>' . $tipo_nome . '</h2>';
+
                 foreach ($consumiveis as $consumivel) {
                     echo '<div class="item">';
                     echo '<img class="foto" src="ADM/fotos/' . $consumivel['foto'] . '" alt="Imagem do Produto">';
                     echo '<h3>' . $consumivel['nome'] . '</h3>';
                     echo '<p>' . $consumivel['descricao'] . '</p>';
                     echo '<p>Preço: R$ ' . number_format($consumivel['preco'], 2, ',', '.') . '</p>';
-                    echo '<button onclick="adicionarAoCarrinho(' . $consumivel['id'] . ', \'' . $consumivel['nome'] . '\', ' . $consumivel['preco'] . ')">Adicionar ao Carrinho</button>';
+                    echo '<button class="btn" onclick="adicionarAoCarrinho(' . $consumivel['id'] . ', \'' . $consumivel['nome'] . '\', ' . $consumivel['preco'] . ')">Adicionar ao Carrinho</button>';
                     echo '</div>';
                 }
             }
         } else {
             echo "Nenhum item disponível no momento.";
         }
-        
+
         $conn = null;
         ?>
     </div>
@@ -100,7 +111,17 @@ if (isset($_SESSION['login'])) {
         </div>
         <button onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
-
+    <footer>
+        <p class="textoF">Kiero Burguer®</p>
+        <p class="textoF dev">Desenvolvido por:</p>
+        <div class="devs">
+            <p class="textoF devs">Gabriel Gevezier</p>
+            <p class="textoF devs">Hemily Batista</p>
+            <p class="textoF devs">Luana Peracini</p>
+            <p class="textoF devs">Vinicius Luciano</p>
+            <p class="textoF devs">Wesley Scolaro</p>
+        </div>
+    </footer>
     <script>
         var carrinhoItens = {};
         var precoTotal = 0;
@@ -143,7 +164,7 @@ if (isset($_SESSION['login'])) {
             if (Object.keys(carrinhoItens).length) {
                 var itemElement = document.getElementById('item-' + id);
                 console.log(itemElement)
-                if (carrinhoItens[id].quantidade===1) {
+                if (carrinhoItens[id].quantidade === 1) {
                     itemElement.parentNode.removeChild(itemElement);
                     delete carrinhoItens[id];
                 } else {
@@ -156,7 +177,7 @@ if (isset($_SESSION['login'])) {
                 precoTotal -= preco;
                 atualizarPrecoTotal();
             }
-            
+
         }
 
         function atualizarPrecoTotal() {
@@ -172,9 +193,9 @@ if (isset($_SESSION['login'])) {
 
             const returnArrayQuantities = () => {
                 const finalArray = []
-                for(var key in carrinhoItens){
+                for (var key in carrinhoItens) {
                     const currentObject = carrinhoItens[key];
-                    for(let i = 0;i < currentObject.quantidade;i++){
+                    for (let i = 0; i < currentObject.quantidade; i++) {
                         finalArray.push(key)
                     }
                 }
@@ -182,7 +203,7 @@ if (isset($_SESSION['login'])) {
             }
             carrinhoItens = {
                 ...carrinhoItens,
-                items: returnArrayQuantities()      
+                items: returnArrayQuantities()
             }
 
             var xhr = new XMLHttpRequest();

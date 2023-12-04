@@ -10,39 +10,39 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <style>
-
     body {
         background-image: url('imagens/parede-de-concreto.jpg');
-        
+
     }
+
     section {
         display: flex;
-    height: 500px;
+        height: 500px;
     }
 
     .pagamento {
         background-color: #fff;
-       font-size: 1.25rem;
+        font-size: 1.25rem;
         margin: auto;
         padding: 5rem;
         border-radius: 8px;
     }
+
     .pagamento input {
-    margin-top: 1rem; 
-}
+        margin-top: 1rem;
+    }
 
-button {
-    color: white;
-    font-size: 1.25rem;
-    background-color: #9B1C1C;
-    padding: 0.5rem;
-    border-radius: 10px;
-}
+    button {
+        color: white;
+        font-size: 1.25rem;
+        background-color: #9B1C1C;
+        padding: 0.5rem;
+        border-radius: 10px;
+    }
 
-button:hover {
-    background-color: #C70707;
-}
-    
+    button:hover {
+        background-color: #C70707;
+    }
 </style>
 
 <body>

@@ -25,9 +25,9 @@ if (isset($_SESSION['login'])) {
 </head>
 
 <body>
-<header>
+    <header>
         <div class="logoH">
-        <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
+            <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
         </div>
         <ul class="nav">
             <li class="itemN"><a href="index.php" class="name">Home</a></li>
@@ -46,4 +46,5 @@ if (isset($_SESSION['login'])) {
             </div>
         <?php endif; ?>
     </header>
+
 </html>
