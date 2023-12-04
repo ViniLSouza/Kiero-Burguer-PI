@@ -166,3 +166,44 @@ footer{
     justify-content: center;
     text-align: center;
 }
+
+@media screen and (max-width: 1500px){
+    .box{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    h1{
+        grid-column: span 3;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .box{
+        grid-template-columns: 1fr 1fr;
+    }
+    h1{
+        grid-column: span 2;
+    }
+}
+
+@media screen and (max-width: 1050px){
+    .devs{
+        display: block;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 915px){
+    .box{
+        grid-template-columns: 1fr;
+    }
+    h1{
+        grid-column: span 1;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .container{
+        margin: 0;
+        padding-inline: 3em;
+    }
+}
