@@ -10,21 +10,27 @@ if (isset($_SESSION['login'])) {
     $cliente_id = $_SESSION['login'];
     $carrinhoItens = json_decode(file_get_contents('php://input'), true);
 
-    $query_order = $conn->prepare('INSERT INTO pedidos (FKcliente, items) VALUES (:cliente_id, :items)');
-    $query_order->bindParam(':cliente_id', $cliente_id);
-    $array_items = array_map($funcaoConversao, $carrinhoItens["items"]);
-    $query_order->bindParam(':items', json_encode($array_items));
-    $query_order->execute();
+    if ($carrinhoItens !== null && isset($carrinhoItens['items'])) {
+        $query_order = $conn->prepare('INSERT INTO pedidos (FKcliente, items) VALUES (:cliente_id, :items)');
+        $query_order->bindParam(':cliente_id', $cliente_id);
+        $array_items = array_map($funcaoConversao, $carrinhoItens["items"]);
+        $query_order->bindParam(':items', json_encode($array_items));
+        $query_order->execute();
 
-    $id = $query_order->lastInsertId();
-    echo $id;
-    exit();
-    foreach ($array_items as $item) {
-        $pedido = intval($id);
-        $produto = intval($item);
-        $stmt = $conn->prepare('INSERT INTO pedidos_consumiveis (FK_pedido, FK_consumivel) VALUES (:pedido,:produto)');
-        $stmt->bindParam(':pedido', $pedido);
-        $stmt->bindParam(':produto', $produto);
-        $stmt->execute();
+        $id_pedido = $conn->lastInsertId();
+
+        foreach ($array_items as $item) {
+            $pedido = intval($id_pedido);
+            $produto = intval($item);
+            $stmt = $conn->prepare('INSERT INTO pedidos_consumiveis (FK_pedido, FK_consumivel) VALUES (:pedido,:produto)');
+            $stmt->bindParam(':pedido', $pedido);
+            $stmt->bindParam(':produto', $produto);
+            $stmt->execute();
+        }
+
+        echo $id_pedido;
+    } else {
+        echo "Dados do carrinho não foram recebidos ou estão em um formato inválido.";
     }
 }
+?>
