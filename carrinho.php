@@ -171,6 +171,7 @@ if (isset($_SESSION['login'])) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
+                        console.log(xhr.responseText)
                         alert("Compra finalizada com sucesso!");
                     } else {
                         alert("Erro ao processar o pedido. Por favor, tente novamente.");
