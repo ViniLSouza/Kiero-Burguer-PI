@@ -19,12 +19,13 @@ if (isset($_SESSION['login'])) {
     
     if ($query_order->execute()) {
         
-        $id = intval($query_order->insert_id);
+        $id = $query_order->insert_id;
         foreach ($array_items as $item) {
-            $pedido = $id;
+            $pedido = intval($id);
             $produto = intval($item);
-            $stmt = $conn->prepare('INSERT INTO pedido_consumiveis (FK_pedido, FK_consumivel) VALUES (?, ?)');
-            $stmt->bindParam('ii', $pedido, $produto);
+            $stmt = $conn->prepare('INSERT INTO pedido_consumiveis (FK_pedido, FK_consumivel) VALUES (:pedido,:produto)');
+            $stmt->bindParam(':pedido', $pedido);
+            $stmt->bindParam(':produto', $produto);
             $stmt->execute();
         }
         echo json_encode(array("status" => "success", "message" => $id));
