@@ -275,7 +275,7 @@ if (isset($_POST['Cadastrar'])) {
     $estado = $_POST['estado'];
 
 
-    $grava = $conn->prepare('INSERT INTO `tbl_login` (`ID_Login`, `User_Login`, `Nome_Login`, `Email_Login`, `Senha_Login`, `CPF_Login`, `CEP_Login`, `Logradouro_Login`, `Numero_Login`, `Complemento_Login`, `Bairro_Login`, `Cidade_Login`, `Estado_Login`, `Tipo_Usuario`) VALUES (NULL, :pusername, :pnome, :pemail, :psenha, :pcpf, :pcep, :plogradouro, :pnumero, :pcomplemento, :pbairro, :pcidade, :pestado, 1);');
+    $grava = $conn->prepare('INSERT INTO `tbl_login` (`ID_Login`, `User_Login`, `Nome_Login`, `Email_Login`, `Senha_Login`, `CPF_Login`, `CEP_Login`, `Logradouro_Login`, `Numero_Login`, `Complemento_Login`, `Bairro_Login`, `Cidade_Login`, `Estado_Login`, `Tipo_Usuario`) VALUES (NULL, :pusername, :pnome, :pemail, :psenha, :pcpf, :pcep, :plogradouro, :pnumero, :pcomplemento, :pbairro, :pcidade, :pestado, 0);');
 
 
     $grava->bindValue(':pusername', $username);

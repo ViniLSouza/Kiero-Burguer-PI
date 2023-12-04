@@ -63,7 +63,7 @@ if (isset($_SESSION['login'])) {
 <body>
     <header>
         <div class="logoH">
-        <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
+            <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
         </div>
         <ul class="nav">
             <li class="itemN"><a href="index.php" class="name">Home</a></li>
@@ -75,9 +75,11 @@ if (isset($_SESSION['login'])) {
                 <a href="login.php" class="login">LOGIN</a>
             </div>
         <?php else : ?>
-            <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
-                <a class='logout' href='index.php?logout'>LOGOUT</a>
-            </p>
+            <div class="teste">
+                <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
+                    <a class='logout' href='index.php?logout'>LOGOUT</a>
+                </p>
+            </div>
         <?php endif; ?>
     </header>
     <section class="banner">
@@ -105,7 +107,7 @@ if (isset($_SESSION['login'])) {
             </div>
         </div>
         <div>
-            <p><a href="#" class="texto order">PEÇA JÁ</a></p>
+            <p><a href="carrinho.php" class="texto order">PEÇA JÁ</a></p>
         </div>
     </section>
     <footer>

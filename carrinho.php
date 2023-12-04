@@ -38,9 +38,11 @@ if (isset($_SESSION['login'])) {
                 <a href="login.php" class="login">LOGIN</a>
             </div>
         <?php else : ?>
-            <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
-                <a class='logout' href='index.php?logout'>LOGOUT</a>
-            </p>
+            <div class="teste">
+                <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
+                    <a class='logout' href='index.php?logout'>LOGOUT</a>
+                </p>
+            </div>
         <?php endif; ?>
     </header>
     <div class="itens">
@@ -55,19 +57,38 @@ if (isset($_SESSION['login'])) {
         $result = $conn->query($query);
 
         if ($result->rowCount() > 0) {
+            $tipos_consumiveis = array(); // Array para armazenar os consumíveis por tipo
+        
+            // Agrupa os consumíveis por tipo
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="item">';
-                echo '<img class="foto" src="ADM/fotos/' . $row['foto'] . '" alt="Imagem do Produto">';
-                echo '<h3>' . $row['nome'] . '</h3>';
-                echo '<p>' . $row['descricao'] . '</p>';
-                echo '<p>Preço: R$ ' . number_format($row['preco'], 2, ',', '.') . '</p>';
-                echo '<button onclick="adicionarAoCarrinho(' . $row['id'] . ', \'' . $row['nome'] . '\', ' . $row['preco'] . ')">Adicionar ao Carrinho</button>';
-                echo '</div>';
+                $tipo_consumivel = strtolower($row['tipo']);
+                if (!isset($tipos_consumiveis[$tipo_consumivel])) {
+                    $tipos_consumiveis[$tipo_consumivel] = array();
+                }
+                $tipos_consumiveis[$tipo_consumivel][] = $row;
+            }
+        
+            // Exibe os consumíveis separadamente por tipo
+            foreach ($tipos_consumiveis as $tipo => $consumiveis) {
+                // Correção para exibir "Porções" corretamente
+                $tipo_nome = ($tipo === 'porcao') ? 'Porções' : ucfirst($tipo) . 's';
+        
+                echo '<h2>' . $tipo_nome . '</h2>'; // Exibe o título do tipo (Hamburguer, Porção, Bebida)
+        
+                foreach ($consumiveis as $consumivel) {
+                    echo '<div class="item">';
+                    echo '<img class="foto" src="ADM/fotos/' . $consumivel['foto'] . '" alt="Imagem do Produto">';
+                    echo '<h3>' . $consumivel['nome'] . '</h3>';
+                    echo '<p>' . $consumivel['descricao'] . '</p>';
+                    echo '<p>Preço: R$ ' . number_format($consumivel['preco'], 2, ',', '.') . '</p>';
+                    echo '<button onclick="adicionarAoCarrinho(' . $consumivel['id'] . ', \'' . $consumivel['nome'] . '\', ' . $consumivel['preco'] . ')">Adicionar ao Carrinho</button>';
+                    echo '</div>';
+                }
             }
         } else {
             echo "Nenhum item disponível no momento.";
         }
-
+        
         $conn = null;
         ?>
     </div>

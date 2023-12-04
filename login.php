@@ -16,21 +16,6 @@
             passwordField.type = "password";
         }
     }
-
-    function abrirModal() {
-        var modal = document.getElementById('modal');
-        modal.style.display = 'block';
-    }
-
-    function fecharModal() {
-        var modal = document.getElementById('modal');
-        modal.style.display = 'none';
-    }
-
-    document.getElementById('formSenha').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Formulário enviado com sucesso!');
-    });
 </script>
 <style>
     body {
@@ -44,7 +29,7 @@
 <body>
     <section class="container">
         <div class="box">
-            <a href="index.html" class="ancora">‹ Voltar à página inicial</a>
+            <a href="index.php" class="ancora">‹ Voltar à página inicial</a>
             <h1 class="name">LOGIN</h1>
             <form action="login.php" method="post" class="login">
                 <input type="text" name="username" placeholder="Usuário" required class="barra">
@@ -52,23 +37,10 @@
                 <button type="button" onclick="togglePasswordVisibility()" class="show">Mostrar Senha</button>
                 <input type="submit" value="Entrar" name="Entrar" class="botao">
             </form>
-            <p>Esqueceu sua senha?<button class="ancora" onclick="abrirModal()">Trocar Senha</button></p>
             <p>Não tem uma conta?<a href="cadastro.php" class="ancora"> Cadastre-se</a></p>
             <p class="noMarg">Kiero Burguer®</p>
         </div>
     </section>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span onclick="fecharModal()" style="float: right; cursor: pointer;" class="fechar">&times;</span>
-            <h2>Recuperação de Senha</h2>
-            <p>Informe seu e-mail para recuperar sua senha:</p>
-            <form id="formSenha">
-                <input type="email" id="email" name="email" placeholder="E-mail" required class="barra email">
-                <br><br>
-                <input type="submit" value="Enviar" class="botao">
-            </form>
-        </div>
-    </div>
 </body>
 
 </html>
