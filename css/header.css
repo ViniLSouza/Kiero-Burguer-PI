@@ -128,3 +128,42 @@ footer{
     justify-content: center;
     text-align: center;
 }
+
+@media screen and (max-width: 750px) {
+    header {
+        display: block;
+    }
+
+    .logoH {
+        justify-content: center;
+    }
+
+    .itemN {
+        margin-inline: 0;
+    }
+
+    .item, .spac {
+        margin-inline: 1em;
+    }
+
+    header {
+        padding: 1em;
+    }
+
+    .loginH {
+        justify-content: center;
+    }
+
+    .login {
+        font-size: 15px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .devs {
+        display: block;
+        font-size: 15px;
+    }
+}

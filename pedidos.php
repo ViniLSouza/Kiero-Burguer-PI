@@ -89,7 +89,7 @@ if (isset($_SESSION['login'])) {
         </div>
         <ul class="nav">
             <li class="itemN"><a href="index.php" class="name">Home</a></li>
-            <li class="itemN"><a href="pedidos.php" class="name">Pedidos</a></li>
+            <li class="itemN item"><a href="pedidos.php" class="name">Pedidos</a></li>
             <li class="itemN"><a href="carrinho.php" class="name">Peça aqui</a></li>
         </ul>
         <?php if (!isset($_SESSION['login'])) : ?>

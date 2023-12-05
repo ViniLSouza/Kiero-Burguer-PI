@@ -72,6 +72,14 @@ if (isset($_SESSION['login'])) {
         height: 100%;
         object-fit: contain;
     }
+    @media screen and (max-width: 750px) {
+    .itens {
+        grid-template-columns: 1fr;
+    }
+    h2{
+    grid-column: 1/2;
+}
+}
 </style>
 
 <body>
@@ -81,7 +89,7 @@ if (isset($_SESSION['login'])) {
         </div>
         <ul class="nav">
             <li class="itemN"><a href="index.php" class="name">Home</a></li>
-            <li class="itemN"><a href="pedidos.php" class="name">Pedidos</a></li>
+            <li class="itemN spac"><a href="pedidos.php" class="name">Pedidos</a></li>
             <li class="itemN"><a href="carrinho.php" class="name">Peça aqui</a></li>
         </ul>
         <?php if (!isset($_SESSION['login'])) : ?>
