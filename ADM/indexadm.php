@@ -47,7 +47,7 @@ if (isset($_SESSION['login'])) {
     </ul>
     <?php if (!isset($_SESSION['login'])) : ?>
       <div class="loginH">
-        <a href="login.php" class="login">LOGIN</a>
+        <a href="../login.php" class="login">LOGIN</a>
       </div>
     <?php else : ?>
       <div class="teste">

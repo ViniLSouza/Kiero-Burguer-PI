@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['login'])) {
     header('Location: login.php');
-    exit; // Para garantir que o código pare de ser executado após o redirecionamento
+    exit;
 }
 
 if (isset($_SESSION['login'])) {

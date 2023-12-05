@@ -9,52 +9,122 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Cadastro</title>
-    <link rel="stylesheet" type="text/css" href="cssADM/cardapio.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../css/header.css" media="screen" />
     <style>
-        body {
-            background-image: url('../imagens/parede-de-concreto.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: repeat;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap');
+    body {
+    background-image: url('../imagens/parede-de-concreto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 60px;
+}
 
-        .consumivel-item {
-            display: flex;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
 
-        .btn {
-            width: 100px;
-            height: 100px;
-        }
+a {
+    display: block;
+    margin-bottom: 10px;
+    color: #9b1c1c;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .foto {
-            width: 20%;
-            height: 100%;
-            margin-inline: 1em;
-        }
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #9b1c1c;
+}
 
-        .margin {
-            margin-inline: 1em;
-        }
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
 
-        .fotob {
-            width: 150px;
-            height: 150px;
-            overflow: hidden;
-        }
+input[type="file"] {
+    margin-bottom: 15px;
+}
 
-        .fotob img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #9b1c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #751515;
+}
+
+.consumivel-item {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin: 10px auto;
+    max-width: 600px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    width: 100px;
+    height: 100px;
+}
+
+.foto {
+    width: 20%;
+    height: 100%;
+    margin-inline: 1em;
+}
+
+.margin {
+    margin-inline: 1em;
+}
+
+.fotob {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.fotob img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tipo {
+    font-size: 20px;
+}
     </style>
 </head>
 
@@ -179,8 +249,6 @@ session_start();
         }
 
         $_SESSION['carrinho'][] = $productId;
-
-        // Redireciona para a página peça.php
         header('Location: peça.php');
         exit();
     } else {
@@ -199,18 +267,6 @@ session_start();
             }
         }
     </script>
-
-    <footer>
-        <p class="textoF">Kiero Burguer®</p>
-        <p class="textoF dev">Desenvolvido por:</p>
-        <div class="devs">
-            <p class="textoF devs">Gabriel Gevezier</p>
-            <p class="textoF devs">Hemily Batista</p>
-            <p class="textoF devs">Luana Peracini</p>
-            <p class="textoF devs">Vinicius Luciano</p>
-            <p class="textoF devs">Wesley Scolaro</p>
-        </div>
-    </footer>
 </body>
 
 </html>

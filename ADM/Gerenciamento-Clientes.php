@@ -50,8 +50,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Gerenciamento de Usuários</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap');
 
+    body {
+    background-image: url('../imagens/parede-de-concreto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Josefin Sans';
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #9b1c1c;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #9b1c1c;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #9b1c1c;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #9b1c1c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #751515;
+}
+
+</style>
 <body>
+    <a href="indexadm.php">Voltar a página inicial</a>
     <h1>Gerenciamento de Usuários</h1>
 
     <table border="1">
