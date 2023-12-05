@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <table border="1">
         <tr>
             <th>ID</th>
+            <th>Usuário</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Tipo de Usuário</th>
@@ -65,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php foreach ($usuarios as $usuario) : ?>
             <tr>
                 <td><?= $usuario['ID_Login'] ?></td>
+                <td><?= $usuario['User_Login'] ?></td>
                 <td><?= $usuario['Nome_Login'] ?></td>
                 <td><?= $usuario['Email_Login'] ?></td>
                 <td>

@@ -43,12 +43,24 @@ session_start();
         .margin {
             margin-inline: 1em;
         }
+
+        .fotob {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .fotob img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 
 <body>
     <form action="processar_cadastro.php" method="post" enctype="multipart/form-data">
-        <a href="indexadm.html">Voltar a página inicial</a>
+        <a href="indexadm.php">Voltar a página inicial</a>
 
         <label for="foto">Foto:</label>
         <input type="file" id="foto" name="foto" accept="image/*" required>
@@ -128,7 +140,9 @@ session_start();
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             echo '<div class="consumivel-item">';
             echo '<h3>' . $row['nome'] . '</h3>';
+            echo '<div class="fotob">';
             echo '<img class="foto" src="fotos/' . $row['foto'] . '" alt="Imagem do Produto">';
+            echo '</div>';
             echo '<p class="margin">' . $row['descricao'] . '</p>';
             echo '<p class="margin">Preço: R$ ' . number_format($row['preco'], 2, ',', '.') . '</p>';
             echo '<p class="margin">Tipo: ' . $row['tipo'] . '</p>';
@@ -170,7 +184,7 @@ session_start();
         header('Location: peça.php');
         exit();
     } else {
-        echo "Erro: ID do produto não foi recebido.";
+        echo "";
     }
     ?>
 

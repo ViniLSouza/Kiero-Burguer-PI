@@ -24,39 +24,56 @@ if (isset($_SESSION['login'])) {
     <link rel="stylesheet" type="text/css" href="css/carrinho.css" media="screen" />
 </head>
 <style>
+    .item {
+        background-image: url(imagens/background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-.item{
-    background-image: url(imagens/background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-body {
+    body {
         background-image: url('imagens/parede-de-concreto.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: repeat;
     }
-    .btn{
-    border: 0;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    font-size: 15px;
-    background-color:#742424;
-    padding: 0.8em;
-    border-radius: 10px;
-    font-family: 'Josefin Sans';
-}
-.btn:hover{
-    background-color:red;
-}
-.btn:active{
-    background-color: #9b1c1c;
-}
-.dois{
-    margin: 2em;
-}
+
+    .btn {
+        border: 0;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        background-color: #742424;
+        padding: 0.8em;
+        border-radius: 10px;
+        font-family: 'Josefin Sans';
+    }
+
+    .btn:hover {
+        background-color: red;
+    }
+
+    .btn:active {
+        background-color: #9b1c1c;
+    }
+
+    .dois {
+        margin: 2em;
+    }
+
+    .fotob {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+    }
+
+    .fotob img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 </style>
+
 <body>
     <header>
         <div class="logoH">
@@ -108,7 +125,9 @@ body {
 
                 foreach ($consumiveis as $consumivel) {
                     echo '<div class="item">';
+                    echo '<div class="fotob">';
                     echo '<img class="foto" src="ADM/fotos/' . $consumivel['foto'] . '" alt="Imagem do Produto">';
+                    echo '</div>';
                     echo '<h3>' . $consumivel['nome'] . '</h3>';
                     echo '<p>' . $consumivel['descricao'] . '</p>';
                     echo '<p>Preço: R$ ' . number_format($consumivel['preco'], 2, ',', '.') . '</p>';
@@ -210,7 +229,15 @@ body {
                 alert("Adicione itens ao carrinho antes de finalizar a compra.");
                 return;
             }
-
+            <?php if (!isset($_SESSION['login'])) : ?>
+                alert("Você precisa estar logado para finalizar a compra. Redirecionando para a página de login.");
+                window.location.href = 'login.php';
+                return;
+            <?php else : ?>
+                // Redireciona para a página de pedidos após a compra
+                alert("Compra finalizada com sucesso! você será redirecionado a página pedidos.");
+                window.location.href = 'pedidos.php';
+            <?php endif; ?>
             const returnArrayQuantities = () => {
                 const finalArray = []
                 for (var key in carrinhoItens) {
@@ -233,14 +260,12 @@ body {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        console.log(xhr.responseText)
-                        alert("Compra finalizada com sucesso!");
+                        console.log(xhr.responseText);
                     } else {
                         alert("Erro ao processar o pedido. Por favor, tente novamente.");
                     }
                 }
             };
-
             xhr.send(JSON.stringify(carrinhoItens));
 
             carrinhoItens = {};

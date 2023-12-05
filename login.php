@@ -66,6 +66,13 @@ if (isset($_POST['Entrar'])) {
         $row = $ver_login->fetch();
         $id_login = $row['ID_Login'];
         $_SESSION['login'] = $id_login;
-        header('location:index.php');
+
+        $tipo_usuario = $row['Tipo_Usuario'];
+
+        if ($tipo_usuario == 1) {
+            header('location: ADM/indexadm.php');
+        } else {
+            header('location: index.php');
+        }
     }
 }

@@ -11,10 +11,6 @@ h2{
     font-size: 30px;
 }
 
-.foto{
-    width: 100px;
-}
-
 .item{
     display: flex;
     flex-direction: column;
