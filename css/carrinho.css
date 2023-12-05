@@ -8,6 +8,7 @@ h2{
     margin: 0 auto;
     margin-block: 2em;
     color: #9b1c1c;
+    font-size: 30px;
 }
 
 .foto{
@@ -22,6 +23,7 @@ h2{
     align-items: center;
     text-align: center;
     color: white;
+    border-radius: 10px;
 }
 
 .btn{
@@ -33,10 +35,22 @@ h2{
     background-color:#742424;
     padding: 0.8em;
     border-radius: 10px;
+    font-family: 'Josefin Sans';
 }
 .btn:hover{
     background-color:red;
 }
 .btn:active{
     background-color: #9b1c1c;
+}
+.dois{
+    margin: 2em;
+}
+
+.carrinho{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

@@ -196,6 +196,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     form {
         background-image: url(imagens/background.jpg);
     }
+    .cad{
+    font-size: 30px;
+    }
+    .botao{
+    font-size: 30px;
+    }
 </style>
 
 <body>

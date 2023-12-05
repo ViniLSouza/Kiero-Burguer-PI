@@ -36,6 +36,26 @@ body {
         background-position: center;
         background-repeat: repeat;
     }
+    .btn{
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    background-color:#742424;
+    padding: 0.8em;
+    border-radius: 10px;
+    font-family: 'Josefin Sans';
+}
+.btn:hover{
+    background-color:red;
+}
+.btn:active{
+    background-color: #9b1c1c;
+}
+.dois{
+    margin: 2em;
+}
 </style>
 <body>
     <header>
@@ -109,7 +129,7 @@ body {
         <div id="itens-carrinho">
             <div id="preco-total">Preço Total: R$ 0.00</div>
         </div>
-        <button onclick="finalizarCompra()">Finalizar Compra</button>
+        <button class="btn dois" onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
     <footer>
         <p class="textoF">Kiero Burguer®</p>
@@ -148,10 +168,10 @@ body {
             const currentElementId = document.getElementById(`item-${id}`)
 
             if (!currentElementId) {
-                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + " - quantidade: " + carrinhoItens[id].quantidade + ' <button onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
+                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + " - quantidade: " + carrinhoItens[id].quantidade + ' <button class="btn dois" onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
                 document.getElementById('itens-carrinho').innerHTML += itemHTML;
             } else {
-                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} - quantidade ${carrinhoItens[id].quantidade} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
+                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} - quantidade ${carrinhoItens[id].quantidade} <button class="btn dois" onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
             }
 
 
@@ -172,7 +192,7 @@ body {
                         ...carrinhoItens[id],
                         quantidade: carrinhoItens[id].quantidade - 1
                     }
-                    itemElement.innerHTML = `${carrinhoItens[id].nome} - R$ ${preco.toFixed(2)} - quantidade: ${carrinhoItens[id].quantidade} <button onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
+                    itemElement.innerHTML = `${carrinhoItens[id].nome} - R$ ${preco.toFixed(2)} - quantidade: ${carrinhoItens[id].quantidade} <button class="btn dois" onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
                 }
                 precoTotal -= preco;
                 atualizarPrecoTotal();
