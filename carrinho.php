@@ -168,10 +168,10 @@ body {
             const currentElementId = document.getElementById(`item-${id}`)
 
             if (!currentElementId) {
-                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + " - quantidade: " + carrinhoItens[id].quantidade + ' <button class="btn dois" onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
+                var itemHTML = '<div id="item-' + id + '">' + nome + ' - R$ ' + preco.toFixed(2) + " - Quantidade: " + carrinhoItens[id].quantidade + ' <button class="btn dois" onclick="removerDoCarrinho(' + id + ',' + preco + ')">Remover</button></div>';
                 document.getElementById('itens-carrinho').innerHTML += itemHTML;
             } else {
-                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} - quantidade ${carrinhoItens[id].quantidade} <button class="btn dois" onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
+                document.getElementById(`item-${id}`).innerHTML = `<div id="item-${id}">${nome} - R$ ${preco.toFixed(2)} - Quantidade ${carrinhoItens[id].quantidade} <button class="btn dois" onclick="removerDoCarrinho(${id}, ${preco})">Remover</button></div>`;
             }
 
 
@@ -192,7 +192,7 @@ body {
                         ...carrinhoItens[id],
                         quantidade: carrinhoItens[id].quantidade - 1
                     }
-                    itemElement.innerHTML = `${carrinhoItens[id].nome} - R$ ${preco.toFixed(2)} - quantidade: ${carrinhoItens[id].quantidade} <button class="btn dois" onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
+                    itemElement.innerHTML = `${carrinhoItens[id].nome} - R$ ${preco.toFixed(2)} - Quantidade: ${carrinhoItens[id].quantidade} <button class="btn dois" onclick="removerDoCarrinho(${id}, ${preco})">Remover</button>`;
                 }
                 precoTotal -= preco;
                 atualizarPrecoTotal();
