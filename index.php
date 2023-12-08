@@ -58,6 +58,24 @@ if (isset($_SESSION['login'])) {
             font-size: 25px;
         }
     }
+    @media screen and (max-width: 1050px) {
+    .devs {
+        display: block;
+        font-size: 15px;
+    }
+    .teste{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 450px) {
+    .teste{
+        display: block;
+    }
+}
 </style>
 
 <body>
