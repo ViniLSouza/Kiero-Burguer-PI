@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Josefin Sans';
+    background-image: url('../imagens/parede-de-concreto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+
+.cadB {
+    text-align: center;
+    padding: 2em;
+}
+
+.cad {
+    color: #9b1c1c;
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: 600;
+}
+
+form {
+    background-image: url('../imagens/background.jpg');
+    background-size: cover;
+    background-position: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.barra {
+    width: 100%;
+    padding: 1em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 1.1em;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.barra:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(155, 28, 28, 0.5);
+}
+
+.barra[readonly] {
+    background-color: rgba(200, 200, 200, 0.9);
+    cursor: not-allowed;
+}
+
+.duo {
+    grid-column: span 1;
+}
+
+.all {
+    grid-column: 1 / -1;
+}
+
+.botao {
+    grid-column: 1 / -1;
+    background-color: #9b1c1c;
+    color: white;
+    border: none;
+    padding: 1em;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao:hover {
+    background-color: #742424;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.botao:active {
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 1450px) {
+    form {
+        display: block;
+        padding: 2em;
+    }
+
+    .duo {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .cad {
+        font-size: 2em;
+    }
+
+    .barra {
+        font-size: 1em;
+    }
+
+    .botao {
+        font-size: 1.1em;
+    }
+}
+
+footer{
+    position: sticky;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #9b1c1c;
+    justify-content: center;
+    text-align: center;
+    padding: 2em;
+}
+
+.textoF{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: white;
+}
+
+.dev{
+    padding: 1em;
+}
+
+.devs{
+    display: flex;
+    margin-inline: 1em;
+    justify-content: center;
+    text-align: center;
+}
+

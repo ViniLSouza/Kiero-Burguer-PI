@@ -6,44 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIERO BURGUER</title>
     <link rel="stylesheet" type="text/css" href="css/header.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/finaliza.css" media="screen" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<style>
-    body {
-        background-image: url('imagens/parede-de-concreto.jpg');
-
-    }
-
-    section {
-        display: flex;
-        height: 500px;
-    }
-
-    .pagamento {
-        background-color: #fff;
-        font-size: 1.25rem;
-        margin: auto;
-        padding: 5rem;
-        border-radius: 8px;
-    }
-
-    .pagamento input {
-        margin-top: 1rem;
-    }
-
-    button {
-        color: white;
-        font-size: 1.25rem;
-        background-color: #9B1C1C;
-        padding: 0.5rem;
-        border-radius: 10px;
-    }
-
-    button:hover {
-        background-color: #C70707;
-    }
-</style>
 
 <body>
     <header>
@@ -66,7 +31,6 @@
         <?php endif; ?>
     </header>
 
-
     <section>
         <div class="pagamento">
             <h2>Valor total do seu pedido: R$<span id="valorTotal">00,00</span></h2>
@@ -74,7 +38,7 @@
 
             <label for="cartao">
                 <input type="radio" name="pagamento" id="cartao"> Cartão Crédito/Débito <i class="ph ph-credit-card"></i>
-            </label> <br>
+            </label>
 
             <label for="dinheiro">
                 <input type="radio" name="pagamento" id="dinheiro"> Dinheiro <i class="ph ph-coins"></i>
@@ -83,7 +47,6 @@
             <button>Finalizar</button>
         </div>
     </section>
-
 
     <footer>
         <p class="textoF">Kiero Burguer®</p>

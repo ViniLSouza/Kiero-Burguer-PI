@@ -16,63 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="css/header.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/cadastro.css" media="screen" />
 </head>
-<style>
-    @media screen and (max-width: 1450px) {
-        form {
-            display: block;
-            padding-inline: 0;
-        }
-    }
 
-    @media screen and (max-width: 620px) {
-        form {
-            margin: 0;
-        }
-
-        .cadB {
-            padding-inline: 0;
-        }
-    }
-
-    @media screen and (max-width: 750px) {
-        header {
-            display: block;
-        }
-
-        .logoH {
-            justify-content: center;
-        }
-
-        .itemN {
-            margin-inline: 0;
-        }
-
-        .item {
-            margin-inline: 1em;
-        }
-
-        header {
-            padding: 1em;
-        }
-
-        .loginH {
-            justify-content: center;
-        }
-
-        .login {
-            font-size: 15px;
-            width: 100%;
-            text-align: center;
-        }
-    }
-
-    @media screen and (max-width: 1050px) {
-        .devs {
-            display: block;
-            font-size: 15px;
-        }
-    }
-</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function buscarCep() {
@@ -92,8 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
-
     function validarSenha() {
         var senha = document.getElementById("senha").value;
         var confirmarSenha = document.getElementById("confirmarSenha").value;
@@ -105,8 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         return true;
     }
-
-
 
     function validarCPF(cpf) {
         cpf = cpf.replace(/[^\d]+/g, '');
@@ -145,8 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return true;
     }
 
-
-
     function validarNome() {
         var nome = document.getElementById("nome").value;
 
@@ -158,8 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return true;
     }
 
-
-
     function validarUsuario() {
         var username = document.getElementById("username").value;
 
@@ -170,8 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         return true;
     }
-
-
 
     function validarEmail() {
         var email = document.getElementById("email").value;
@@ -185,26 +119,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return true;
     }
 </script>
-<style>
-    body {
-        background-image: url('imagens/parede-de-concreto.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-    }
-
-    form {
-        background-image: url(imagens/background.jpg);
-    }
-
-    .cad {
-        font-size: 30px;
-    }
-
-    .botao {
-        font-size: 30px;
-    }
-</style>
 
 <body>
     <header>
@@ -226,36 +140,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <form action="cadastro.php" method="post" onsubmit="return validarNome() && validarUsuario() && validarEmail() && validarSenha() && validarCPF(document.getElementById('numero').value)">
-
         <input placeholder="Usuário" type="text" id="username" name="username" required class="barra duo">
-
         <input placeholder="Nome" type="text" id="nome" name="nome" required class="barra duo">
-
         <input placeholder="E-mail" type="email" id="email" name="email" required class="barra all">
-
         <input placeholder="Senha" type="password" id="senha" name="senha" required class="barra duo">
-
         <input placeholder="Confirme sua senha" type="password" id="confirmarSenha" name="confirmsenha" required class="barra duo">
-
         <input placeholder="CPF" type="text" id="numero" name="numero" maxlength="11" pattern="[0-9]*" required oninput="this.value = this.value.replace(/\D/g, '')" class="barra">
-
         <input placeholder="CEP" type="text" id="cep" name="cep" maxlength="8" pattern="[0-9]*" required oninput="this.value = this.value.replace(/\D/g, '')" onblur="buscarCep()" class="barra">
-
         <input placeholder="Logradouro" type="text" id="logradouro" name="logradouro" required class="barra">
-
         <input placeholder="Número" type="text" id="num" name="num" pattern="[0-9]*" required oninput="this.value = this.value.replace(/\D/g, '')" class="barra">
-
         <input placeholder="Complemento" type="text" id="complemento" name="complemento" required class="barra">
-
         <input placeholder="Bairro" type="text" id="bairro" name="bairro" required class="barra">
-
         <input placeholder="Cidade" type="text" id="cidade" name="cidade" required readonly class="barra">
-
         <input placeholder="Estado" type="text" id="estado" name="estado" required readonly class="barra">
-
         <input type="submit" value="Cadastrar" name="Cadastrar" class="botao">
-
     </form>
+
     <footer>
         <p class="textoF">Kiero Burguer®</p>
         <p class="textoF dev">Desenvolvido por:</p>
@@ -272,7 +172,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <?php
-
 include "conn.php";
 
 if (isset($_POST['Cadastrar'])) {
@@ -289,9 +188,7 @@ if (isset($_POST['Cadastrar'])) {
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
 
-
     $grava = $conn->prepare('INSERT INTO `tbl_login` (`ID_Login`, `User_Login`, `Nome_Login`, `Email_Login`, `Senha_Login`, `CPF_Login`, `CEP_Login`, `Logradouro_Login`, `Numero_Login`, `Complemento_Login`, `Bairro_Login`, `Cidade_Login`, `Estado_Login`, `Tipo_Usuario`) VALUES (NULL, :pusername, :pnome, :pemail, :psenha, :pcpf, :pcep, :plogradouro, :pnumero, :pcomplemento, :pbairro, :pcidade, :pestado, 0);');
-
 
     $grava->bindValue(':pusername', $username);
     $grava->bindValue(':pnome', $nome);

@@ -1,144 +1,35 @@
 <?php
-session_start();
-if (isset($_SESSION['login'])) {
-    include "conn.php";
-    $cons_nome = $conn->prepare('SELECT * FROM tbl_login WHERE ID_Login=:pid');
-    $cons_nome->bindValue(':pid', $_SESSION['login']);
-    $cons_nome->execute();
-    $row_nome = $cons_nome->fetch();
+require_once 'config/constants.php';
+require_once 'config/database.php';
+require_once 'includes/functions.php';
 
+// Inicializa a sessão
+iniciarSessao();
 
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        header('Location: login.php');
+// Roteamento básico
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+
+// Verifica se é uma rota da área administrativa
+if (strpos($page, 'admin/') === 0) {
+    // Verifica se o usuário está logado e é administrador
+    if (!isset($_SESSION['login']) || !isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] != USER_TYPE_ADMIN) {
+        header('Location: ' . SITE_URL . '/login.php');
+        exit;
     }
+    
+    // Remove o prefixo 'admin/' e inclui o arquivo da área administrativa
+    $admin_page = substr($page, 6);
+    $file = 'admin/views/' . $admin_page . '.php';
+} else {
+    // Inclui o arquivo da área pública
+    $file = 'src/views/' . $page . '.php';
 }
-?>
 
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIERO BURGUER</title>
-    <link rel="stylesheet" type="text/css" href="css/header.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-</head>
-<style>
-    body {
-        background-image: url('imagens/parede-de-concreto.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-    }
-
-    .sobre {
-        background-image: url('imagens/background.jpg');
-    }
-
-    footer {
-        background-image: url('imagens/parede-de-concreto2.jpg');
-        background-size: cover;
-        background-position: center;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 1);
-    }
-
-    @media screen and (max-width: 1050px) {
-        .mostruario {
-            display: block;
-        }
-
-        .foto {
-            width: 50%;
-        }
-
-        .texto {
-            font-size: 25px;
-        }
-    }
-    @media screen and (max-width: 1050px) {
-    .devs {
-        display: block;
-        font-size: 15px;
-    }
-    .teste{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-}
-@media screen and (max-width: 450px) {
-    .teste{
-        display: block;
-    }
-}
-</style>
-
-<body>
-    <header>
-        <div class="logoH">
-            <a href="index.php"><img src="imagens/logo.png" class="logoN"></a>
-        </div>
-        <ul class="nav">
-            <li class="itemN"><a href="index.php" class="name">Home</a></li>
-            <li class="itemN item"><a href="pedidos.php" class="name">Pedidos</a></li>
-            <li class="itemN"><a href="carrinho.php" class="name">Peça aqui</a></li>
-        </ul>
-        <?php if (!isset($_SESSION['login'])) : ?>
-            <div class="loginH">
-                <a href="login.php" class="login">LOGIN</a>
-            </div>
-        <?php else : ?>
-            <div class="teste">
-                <p class='mensagemlogin'>Olá, <?php echo $row_nome['User_Login']; ?> seja bem-vindo de volta!
-                    <a class='logout' href='index.php?logout'>LOGOUT</a>
-                </p>
-            </div>
-        <?php endif; ?>
-    </header>
-    <section class="banner">
-        <img src="imagens/banner.jpg" class="fotoB">
-    </section>
-    <section class="frase">
-        <p class="fraseB">Seja bem-vindo à Kiero Burguer, onde cada mordida conta uma história de sabor e qualidade!</p>
-    </section>
-    <section class="sobre">
-        <div>
-            <p class="texto">Experimente e descubra o que é uma verdadeira experiência gastronômica!</p>
-        </div>
-        <div class="mostruario">
-            <div>
-                <img src="imagens/lanche.jpg" class="foto">
-                <p class="texto">O lanche MAIS suculento!</p>
-            </div>
-            <div>
-                <img src="imagens/batata.jpg" class="foto">
-                <p class="texto">A batata MAIS crocante!</p>
-            </div>
-            <div>
-                <img src="imagens/bebida.jpg" class="foto">
-                <p class="texto">A bebida MAIS gelada!</p>
-            </div>
-        </div>
-        <div>
-            <p><a href="carrinho.php" class="texto order">PEÇA JÁ</a></p>
-        </div>
-    </section>
-    <footer>
-        <p class="textoF">Kiero Burguer®</p>
-        <p class="textoF dev">Desenvolvido por:</p>
-        <div class="devs">
-            <p class="textoF devs">Gabriel Gevezier</p>
-            <p class="textoF devs">Hemily Batista</p>
-            <p class="textoF devs">Luana Peracini</p>
-            <p class="textoF devs">Vinicius Luciano</p>
-            <p class="textoF devs">Wesley Scolaro</p>
-        </div>
-    </footer>
-</body>
-
-</html>
+// Verifica se o arquivo existe
+if (file_exists($file)) {
+    require_once $file;
+} else {
+    // Página não encontrada
+    header("HTTP/1.0 404 Not Found");
+    require_once 'src/views/404.php';
+} 

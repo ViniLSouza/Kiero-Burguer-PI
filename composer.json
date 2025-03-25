@@ -1,0 +1,42 @@
+{
+    "name": "kiero-burguer/website",
+    "description": "Sistema de pedidos online para hamburgueria",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^6.8",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel Gevezier",
+        },
+        {
+            "name": "Hemily Batista",
+        },
+        {
+            "name": "Luana Peracini",
+        },
+        {
+            "name": "Vinicius Luciano",
+        },
+        {
+            "name": "Wesley Scolaro",
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf"
+    }
+} 

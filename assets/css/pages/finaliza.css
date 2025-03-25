@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Josefin Sans';
+    background-image: url('../imagens/parede-de-concreto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 2em;
+}
+
+.pagamento {
+    background-image: url('../imagens/background.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 3em;
+    border-radius: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+}
+
+.pagamento h2 {
+    color: #9b1c1c;
+    font-size: 2em;
+    margin-bottom: 1.5em;
+    font-weight: 600;
+}
+
+.pagamento p {
+    font-size: 1.2em;
+    margin: 1em 0;
+    color: #333;
+}
+
+.pagamento label {
+    display: block;
+    margin: 1em 0;
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.pagamento label:hover {
+    color: #9b1c1c;
+}
+
+.pagamento input[type="radio"] {
+    margin-right: 0.5em;
+}
+
+.pagamento i {
+    margin-left: 0.5em;
+    color: #9b1c1c;
+}
+
+.pagamento button {
+    background-color: #9b1c1c;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 1.5em;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.pagamento button:hover {
+    background-color: #742424;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pagamento button:active {
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 600px) {
+    .pagamento {
+        padding: 2em;
+    }
+
+    .pagamento h2 {
+        font-size: 1.5em;
+    }
+
+    .pagamento p, .pagamento label {
+        font-size: 1em;
+    }
+} 
